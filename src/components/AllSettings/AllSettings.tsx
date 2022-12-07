@@ -3,7 +3,7 @@ import React from 'react';
 export function AllSettings() {
     return (
         <div>
-            settings
+            <h2>Settings</h2>
         </div>
     )
 }
