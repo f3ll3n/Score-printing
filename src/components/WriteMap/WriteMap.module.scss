@@ -1,6 +1,6 @@
 .root{
-    background: var(--primary);
-    color: var(--white) !important;
+    background: var(--white);
+    color: var(--black);
 }
 
 .error_tag_block{
@@ -59,7 +59,6 @@
         textarea{
             box-sizing: border-box;
             width: 100%;
-            border: none;
 	        border-radius: 20px;
 	        outline: none;
 	        padding: 10px 400px 10px 10px;
@@ -78,6 +77,10 @@
             overflow: auto;
             &:focus{
                 border: solid 3px #77bde0;	
+            }
+            &:disabled{
+                border: solid 3px var(--green);	
+                opacity: 0.4;
             }
         }
     }

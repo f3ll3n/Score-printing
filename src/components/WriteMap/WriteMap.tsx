@@ -3,10 +3,11 @@ import styles from './WriteMap.module.scss';
 import _ from 'lodash';
 import isEqual from 'lodash/isEqual';
 import { CompletedMaps } from '../CompletedMaps/CompletedMaps';
+import { ButtonControls } from '../ButtonControls/ButtonControls';
 
 export const WriteMap: React.FC = (): React.ReactElement => {
   const textAreaRef = useRef<any>(true);
-  const [mapValue] = useState<string>('Яндекс.Переводчик — синхронный перевод для 102 языков, подсказки при наборе, словарь с транскрипцией, произношением и примерами употребления слов');
+  const [mapValue] = useState<string>('Яндекс.Переводчик - синхронный перевод для 102 языков, подсказки при наборе, словарь с транскрипцией, произношением и примерами употребления слов');
   const [userValueArray, setUserValueArray] = useState<string[]>();
   const [symbolCount, setSymbolCount] = useState<number>(0);
   const [isCheat, setIsCheat] = useState<boolean>(false);
@@ -16,7 +17,6 @@ export const WriteMap: React.FC = (): React.ReactElement => {
   const [isStarted, setIsStarded] = useState<boolean>(false);
   const [startTime, setStartTime] = useState<number>(0);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
-  
   // const [currentTime, setCurrentTime] = useState<string>('');
 
   // useEffect(() => {
@@ -137,6 +137,7 @@ export const WriteMap: React.FC = (): React.ReactElement => {
         )}
         
       </div>
+      <ButtonControls />
       <CompletedMaps />
     </div>
   );

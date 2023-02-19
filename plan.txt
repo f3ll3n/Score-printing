@@ -1,0 +1,40 @@
+TextArea
+   userInput
+   userValueArray
+   isDisabled
+   textAreaRef
+   symbolCount
+
+Page
+   isStarted,
+   isError,
+   isCheat,
+   isFinally,
+   checkOnCheat,
+
+Stat
+   startTime
+   Date
+
+
+Поделить всё на эти компоненты.
+
+CompletedMaps - this component could be extracted into its own file and imported into WriteMap. It could also be renamed to something more descriptive, like CompletedMapsList.
+
+TypingArea - the textarea and associated logic could be moved into its own component, which could be responsible for handling user input and passing that input to a callback function provided by WriteMap. This would make the code for handling user input much easier to read and manage.
+
+DisplayArea - the area that displays the original map text and the user's input could be moved into its own component. This component would receive the original map text and the user's input as props, and it would be responsible for rendering them in the correct format.
+
+ErrorTag - the logic for displaying error tags could be moved into its own component. This component would receive a boolean value indicating whether an error tag should be displayed, and it would render the appropriate tag based on that value.
+
+RestartButton - the logic for handling the restart button could be moved into its own component. This component would receive a callback function as a prop and would call that function when the button is clicked.
+
+TimeDisplay - the logic for displaying the time could be moved into its own component. This component would receive a date value as a prop and would format and render that value in the correct format.
+
+1. Создать компонент кнопки с иконками для переиспользования и компонент с ButtonControls.
+2. Создать теги для переиспользования и компонент с тегами и TagMarkers.
+3. Создать TypingArea с TextArea и его состоянием в Slice.
+4. Создать DisplayArea с отображением внутреннего состояния.
+5. Создать ResultsPanel с отображением статистики и информации по скорости, и статистики по финалу.
+6. Всю логику отработки происходящего вынести в WriteMap.
+8. Подключить к WriteMap смену карт и просмотр пройденных карт
