@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function PageNotFound() {
     return (
@@ -7,13 +8,13 @@ export function PageNotFound() {
                 Page not found: 404 Error
             </h1>
             <p>
-                Maybe you mean:
+                Did you mean:
             </p>
             <ul>
                 <li>
-                   <a href="/" className="underline">
+                   <Link to="/" className="underline">
                         Main page
-                    </a> 
+                    </Link> 
                 </li>
             </ul>
         </div>
