@@ -1,80 +1,143 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import styles from './WriteMap.module.scss';
+import _ from 'lodash';
+import isEqual from 'lodash/isEqual';
+import { CompletedMaps } from '../CompletedMaps/CompletedMaps';
 
-//Тип объекта каждого символа
-type SymbolObjectType = {
-    data: string,
-    status: boolean,
-    id: number
-}
+export const WriteMap: React.FC = (): React.ReactElement => {
+  const textAreaRef = useRef<any>(true);
+  const [mapValue] = useState<string>('Яндекс.Переводчик — синхронный перевод для 102 языков, подсказки при наборе, словарь с транскрипцией, произношением и примерами употребления слов');
+  const [userValueArray, setUserValueArray] = useState<string[]>();
+  const [symbolCount, setSymbolCount] = useState<number>(0);
+  const [isCheat, setIsCheat] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [checkOnCheat, setCheckOnCheat] = useState<boolean>(false);
+  const [isFinally, setIsFinnaly] = useState<boolean>(false);
+  const [isStarted, setIsStarded] = useState<boolean>(false);
+  const [startTime, setStartTime] = useState<number>(0);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  
+  // const [currentTime, setCurrentTime] = useState<string>('');
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const now = new Date();
+  //     const [hours, minutes, seconds, day, month, year] = [
+  //       now.getHours(),
+  //       now.getMinutes(),
+  //       now.getSeconds(),
+  //       now.getDate(),
+  //       now.getMonth() + 1,
+  //       now.getFullYear()
+  //     ].map((value) => value.toString().padStart(2, '0'));
+  //     setCurrentTime(`${hours}:${minutes}:${seconds} ${day}:${month}:${year}`);
+  //   }, 200);
+  //   return () => clearInterval(interval);
+  // }, []);
 
-export const WriteMap = ():any => {
-    //Карта, которую проходит игрок
-    const [textMap, setTextMap] = useState(String);
-    //Инпут
-    const [userInput, setUserInput] = useState('');
-    //Объект с символами и их статусами
-    const [currentArray, setCurrentArray] = useState(Array);
+ // Calculate the typing speed and accuracy
+  const typingSpeed = (symbolCount / ((Date.now() - startTime) / 1000) * 60).toFixed(2);
+  const accuracy = (((mapValue.length - Math.abs(mapValue.length - symbolCount)) / mapValue.length) * 100).toFixed(2);
 
-    const [errorMessage, setErrorMessage] = useState('');
+  const onChangeValue = (event: string) => {
 
-    useEffect(() => {
-        setTextMap('2-й чемпионат мира по футболу стартовал 20 ноября. Фавориты известны - действующий чемпион Франция, Бразилия и Аргентина, Англия и Испания, Германия и Нидерланды, Португалия и Бельгия.')
-    }, [])
-    useEffect(() => {
-        const userArr = userInput.split('');
-        let status;
-        const textMapArr = textMap.split('');
-        const currUserValue = userArr.length - 1;
+    // Array with the user data and with the map data.
+    const mapValueArray = mapValue.split('');
+    const userValueArray = event.split('');
 
-        if (userArr[currUserValue] === textMapArr[currUserValue]){
-            status = true; 
-            setCurrentDataObject(status, userArr, currUserValue)
-        } 
-        //Если значение не совпадает с символом текстовой карты той же итерации то false
-        else {
-            status = false;
-            setErrorMessage('В тексте есть ошибки! Результат не будет зачтён')
-            setCurrentDataObject(status, userArr, currUserValue)
-        }
-    }, [userInput]);
-
-    const setCurrentDataObject = (status: boolean, userArr:Array<string>, currUserValue:any) => {
-        //создаём объект, спредим его в state
-        let currentData: SymbolObjectType = {
-            data: userArr[currUserValue],
-            status: status,
-            id: currUserValue,
-        }
-        setCurrentArray([...currentArray, currentData]);
+    // On change in input set isStarted
+    if (!isStarted) {
+      setIsStarded(true);
+      setStartTime(Date.now());
     }
-    const outputArray = React.useMemo(() => {
-        const userArr = userInput.split('');
-        const newCurrArr = currentArray;
-        newCurrArr.length = userArr.length;
-        console.log(`Current array state's more than user array -- ${newCurrArr.length}, ${userArr.length}`);
-        return newCurrArr;
-    }, [currentArray])
 
+    // Check on copy paste
+    if (userValueArray.length - 1 !== symbolCount && userValueArray.length + 1 !== symbolCount) {
+        setIsCheat(true);
+        setIsDisabled(true);
+    }
 
-   
-    return(
-        <div>
-            <div className={errorMessage ? 'bg-slate-200 text-4xl text-red-900' : ''}>
-                {errorMessage}
-            </div>
-            <div>
-                Пример: { textMap }
-            </div>
-            <div className='bg-slate-800 p-1 text-gray-400'>
-                Проверка: { outputArray.map(({id, data, status}: any) => {
-                        return <span className={ status ? 'text-white' : 'text-red-500' } key={ id }>{data}</span>
-                }) }
-            </div>
-            <div>
-                Ввод:
-                <textarea value={ userInput } onChange={ (event) => {setUserInput(event.target.value)} } id="about" name="about" className="mt-1 block w-full border-slate-500 border-spacing-1 rounded-md text-xl  shadow-sm focus:border-indigo-500 h-[50vh] resize-none focus:ring-indigo-500 outline-slate-500 p-2 " placeholder="При вводе любого символа начнётся тест."></textarea>
-            </div>
+    setUserValueArray(userValueArray);
+    const isEqual = _.isEqual(mapValueArray, userValueArray);
+
+    // Check on final
+    if(isEqual) {
+       setCheckOnCheat(true); 
+    }
+
+    // Check on text errors
+    mapValueArray
+      .slice(0, userValueArray.length)
+      .join('') === userValueArray.join('')
+      ? setIsError(false)
+      : setIsError(true);
+    
+    // Control
+    setSymbolCount(userValueArray.length);
+  };
+
+  const handleOnRestart = () => {
+    textAreaRef.current.value = '';
+    setIsDisabled(false);
+    setUserValueArray([]);
+    setSymbolCount(0);
+    setIsCheat(false);
+    setIsError(false);
+    setCheckOnCheat(false);
+    setIsFinnaly(false)
+    setIsStarded(false);
+    setStartTime(0);
+  }
+
+  useEffect(() => {
+    if(!isCheat && checkOnCheat) {
+      console.log(isCheat);
+      setIsFinnaly(true);
+      setIsDisabled(true);
+    }
+  }, [isCheat, checkOnCheat])
+
+ 
+
+  return (
+    <div className={styles.root}>
+      <button onClick={() => handleOnRestart()}>Restart</button>
+      <div className={styles.all_values}>{mapValue}
+      <div className={styles.user_input}>
+        {userValueArray && (
+            userValueArray.map((char, index) => {
+                if(char === mapValue.split('')[index]){
+                    return <span key={index}className={styles.green}>{char}</span>
+                }
+                else{
+                    return <span key={index} className={styles.red}>{char}</span>
+                }
+            })
+        )}
+      </div>
+      </div>
+
+      <div className={styles.error_tag_block}>
+        {isFinally && <span className={styles.tag_finally}>Успех!</span>}
+        {isError && <span className={styles.tag_error}>Найдена ошибка</span>}
+        {isCheat && <span className={styles.tag_error}>Copy Paste запрещён</span>}
+      </div>
+      <div className={styles.textarea_block}>
+        <div className={styles.textarea}>
+            <textarea ref={textAreaRef} onChange={(event) => onChangeValue(event.target.value)} id="about" name="about" disabled={isDisabled} placeholder="При вводе любого символа начнётся тест."></textarea>
         </div>
-    )
-}
+        {isStarted && 
+        (
+        <div>
+            Скорость набора: <br/> {typingSpeed} симв. / мин.
+            <br />
+            <br />
+            Напечатано: <br/>  {accuracy} %
+        </div>
+        )}
+        
+      </div>
+      <CompletedMaps />
+    </div>
+  );
+};

@@ -1,9 +1,9 @@
 import React from 'react';
+import './styles/global.css';
 import { Routes, Route } from 'react-router-dom';
+import { Navigation, WriteMap } from './components';
 import { HomePage } from './pages/HomePage';
-import { AllSettings } from './components/AllSettings/AllSettings';
 import { PageNotFound } from './pages/PageNotFound';
-import { Navigation } from './components/Navigation/Navigation';
 
 function App() {
   return (
@@ -11,7 +11,6 @@ function App() {
     <Navigation />
       <Routes>
       <Route path="/" element={ <HomePage /> } />
-      <Route path="/settings" element={ <AllSettings /> } />
       <Route path="*" element={ <PageNotFound />} />
     </Routes>
     </>
