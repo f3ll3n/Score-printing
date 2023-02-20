@@ -3,7 +3,6 @@ import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import { ReactNode } from "react";
 import styles from './Button.module.scss';
 import cn from 'classnames';
-import ArrowIcon from './arrow.svg';
 
 export interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
     children: ReactNode;

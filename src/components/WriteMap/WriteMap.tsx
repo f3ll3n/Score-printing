@@ -2,8 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import styles from './WriteMap.module.scss';
 import _ from 'lodash';
 import isEqual from 'lodash/isEqual';
-import { CompletedMaps } from '../CompletedMaps/CompletedMaps';
-import { ButtonControls } from '../ButtonControls/ButtonControls';
+import { Tag } from '../Tag/Tag';
+import { CompletedMaps } from '../../containers/CompletedMaps/CompletedMaps';
+import { ButtonControls } from '../../containers/ButtonControls/ButtonControls';
 
 export const WriteMap: React.FC = (): React.ReactElement => {
   const textAreaRef = useRef<any>(true);
@@ -118,9 +119,9 @@ export const WriteMap: React.FC = (): React.ReactElement => {
       </div>
 
       <div className={styles.error_tag_block}>
-        {isFinally && <span className={styles.tag_finally}>Успех!</span>}
-        {isError && <span className={styles.tag_error}>Найдена ошибка</span>}
-        {isCheat && <span className={styles.tag_error}>Copy Paste запрещён</span>}
+        {isFinally && <Tag color='green' size='sm'>Успех!</Tag>}
+        {isError && <Tag color='red' size='sm'>Найдена ошибка</Tag>}
+        {isCheat && <Tag color='red' size='sm'>Copy Paste запрещён</Tag>}
       </div>
       <div className={styles.textarea_block}>
         <div className={styles.textarea}>

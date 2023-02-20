@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
+import areaSlice from "./slices/textareaSlice";
+
+
 export const store = configureStore({
-  reducer: {  },
+  reducer: { areaSlice },
 });
 
 type AppDispatch = typeof store.dispatch;

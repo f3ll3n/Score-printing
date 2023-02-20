@@ -1,0 +1,17 @@
+.green{
+    color: var(--white);
+    background-color: var(--green);
+}
+.all_values{
+    position: relative;
+}
+.user_input{
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+}
+.red{
+    color: var(--white);
+    background-color: var(--red);
+}
