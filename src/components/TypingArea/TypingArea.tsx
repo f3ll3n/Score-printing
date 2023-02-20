@@ -1,17 +1,27 @@
 import React from 'react'
 import styles from './TypingArea.module.scss';
-import textareaSlice from '../../redux/slices/textareaSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { setInput } from '../../redux/slices/textareaSlice';
+import { setInput, start, cheatStop, final } from '../../redux/slices/textareaSlice';
 
 export const TypingArea: React.FC = (): React.ReactElement => {
   const dispatch = useDispatch();
-  const {isDisabled, userValue} = useSelector((state: any) => state.areaSlice);
+  const {isDisabled, userValue, isStarted, charsCount, mapValue} = useSelector((state: any) => state.areaSlice);
 
   const onChangeValue = (value: string) => {
+    if(!isStarted){
+      dispatch(start({
+        date: Date.now(),
+      }))
+    }
     dispatch(setInput({
-      value: value,
+        value: value,
     }))
+    if (charsCount - 1 !== value.split('').length && charsCount + 1 !== value.split('').length && charsCount !== value.split('').length) {
+      dispatch(cheatStop())
+    }
+    if(value === mapValue) {
+       dispatch(final())
+    }
   }
 
   return (

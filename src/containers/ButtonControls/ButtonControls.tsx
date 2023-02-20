@@ -4,7 +4,6 @@ import { restart } from '../../redux/slices/textareaSlice';
 import { useDispatch } from 'react-redux';
 
 export const ButtonControls: React.FC = (): React.ReactElement => {
-  
   const dispatch = useDispatch();
   const handleOnClickRestart = () => {
     dispatch(restart());

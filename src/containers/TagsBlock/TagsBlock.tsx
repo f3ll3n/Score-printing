@@ -1,13 +1,17 @@
 import React from 'react'
-export const ButtonControls: React.FC = (): React.ReactElement | null => {
-//    switch () {
-//         case 'copyPaste':
-//             return <Tag color='red' size='sm'>Copy Paste запрещён</Tag>;
-//         case 'Final':
-//             return <Tag color='green' size='sm'>Успех!</Tag>; 
-//         case 'Error':
-//             return <Tag color='red' size='sm'>Найдена ошибка</Tag>;
-//         default:
-            return <> </>;
-    // }
+import { Tag } from '../../components/Tag/Tag';
+import { useSelector } from 'react-redux';
+
+export const TagsBlock: React.FC = (): React.ReactElement | null => {
+   const status = useSelector((state: any) => state.areaSlice.typeStatus)
+   switch (status) {
+        case 'cheat':
+            return <Tag color='red' size='sm'>Copy Paste запрещён</Tag>;
+        case 'finally':
+            return <Tag color='green' size='sm'>Успех!</Tag>; 
+        case 'error':
+            return <Tag color='red' size='sm'>Найдена ошибка</Tag>;
+        default:
+            return null;
+   }
 }
