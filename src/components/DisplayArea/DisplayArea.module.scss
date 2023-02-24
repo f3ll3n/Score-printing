@@ -1,15 +1,24 @@
-.green{
-    color: var(--white);
-    background-color: var(--green);
-}
-.all_values{
+.root{
     position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.23);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.8px);
+    -webkit-backdrop-filter: blur(3.8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 5px 10px;
+    margin: 15px 0;
 }
 .user_input{
     position: absolute;
     display: block;
-    top: 0;
-    left: 0;
+    top: 5px;
+    left: 10px;
+}
+.green{
+    color: var(--white);
+    background-color: var(--green);
 }
 .red{
     color: var(--white);

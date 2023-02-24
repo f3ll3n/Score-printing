@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from './DisplayArea.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useSelector } from 'react-redux';
+//Rewrite styles
 export const DisplayArea = () => {
   const {mapValue, userArrayValue} = useSelector((state: any) => {
     return state.areaSlice
   })
   return (
-    <div className={styles.all_values}>{mapValue}
+    <div className={styles.root}>{mapValue}
       <div className={styles.user_input}>
         {userArrayValue && (
             userArrayValue.map((char: string, index: number) => {
@@ -20,6 +20,6 @@ export const DisplayArea = () => {
             })
         )}
       </div>
-      </div>
+    </div>
   )
 }

@@ -1,7 +1,18 @@
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700;800;900&display=swap');
 
 body {
-  font-family: 'Roboto', sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  height: 100vh;
+  font-family: 'Roboto Slab', serif;
+  padding: 0;
+  margin: 0;
+}
+body > * {
+  overflow: hidden;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 :root {
@@ -14,5 +25,5 @@ body {
   --green: #1dc37e;
   --green-light: #c8f8e4;
   --font-family: 'Roboto', sans-serif;
-  --bg: #f5f6f8;
+  --bg: linear-gradient(#6344df, pink);
 }

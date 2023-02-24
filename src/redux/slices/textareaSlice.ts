@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+//ok
 type Tvalue = {
   userValue: string,
   userArrayValue: string[],
   mapValue: string,
   isDisabled: boolean,
-  typingSpeed: number,
+  typingSpeed: number | string,
   isStarted: boolean,
   startTime: number,
   typeStatus: 'finally' | 'cheat' | 'error'| 'ok',
@@ -15,12 +15,12 @@ type Tvalue = {
 const initialState: Tvalue = {
      userValue: '',
      userArrayValue: [],
-     mapValue: 'Затестим тестовую карту',
+     mapValue: 'Затестим тестовую карту Затестим тестовую карту Затестим тестовую карту Затестим тестовую карту Затестим тестовую карту Затестим тестовую карту Затестим тестовую карту Затестим тестовую карту  тестовую карту Затестим тестовую карту Затестим тестовую карту Затестим тестовую карту Затестим тестовую карту Затестим тестовую карту  тестовую карту Затестим тестовую карту Затестим тестовую карту Затестим тестовую карту Затестим тестовую карту Затестим тестовую карту',
      isDisabled: false,
      isStarted: false,
      typeStatus: 'ok',
      startTime: 0,
-     typingSpeed: 0,
+     typingSpeed: '0',
      charsCount: 0,
 };
 
@@ -36,7 +36,7 @@ const areaSlice = createSlice({
       state.userValue = action.payload.value;
       state.userArrayValue = action.payload.value.split('');
       state.charsCount = state.userArrayValue.length;
-      state.typingSpeed = state.userArrayValue.length / ((Date.now() - state.startTime) / 1000) * 60;
+      state.typingSpeed = (state.userArrayValue.length / ((Date.now() - state.startTime) / 1000) * 60).toFixed(1);
     },
     restart: (state) => {
       state.userValue = '';
@@ -55,7 +55,7 @@ const areaSlice = createSlice({
     },
     final: (state) => {
       state.typeStatus = 'finally';
-      console.log(state.userValue)
+      state.isDisabled = true;
     }
   }
 });

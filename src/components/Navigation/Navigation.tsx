@@ -1,15 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import styles from './Navigation.module.scss';
+//write styles
 export const Navigation = (): React.ReactElement  => {
     return(
-        <header>
+        <header className={styles.header}>
             <nav>
-            <h3>Score-Printer</h3>
-            <span>
-                <Link to="/" className="mr-2 navbar-hover">Home</Link>
-                <Link to="/settings" className="navbar-hover">Settings</Link>
-            </span>
+            <h3><Link to='/'>Score-Printer</Link></h3>
         </nav>
         </header>
         

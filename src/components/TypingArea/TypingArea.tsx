@@ -27,7 +27,7 @@ export const TypingArea: React.FC = (): React.ReactElement => {
   return (
     <div className={styles.textarea_block}>
         <div className={styles.textarea}>
-            <textarea value={userValue} onChange={(event) => onChangeValue(event.target.value)} id="about" name="about" disabled={isDisabled} placeholder="При вводе любого символа начнётся тест."></textarea>
+            <textarea value={userValue} spellCheck="false" onChange={(event) => onChangeValue(event.target.value)} id="about" name="about" disabled={isDisabled} placeholder="При вводе любого символа начнётся тест."></textarea>
         </div>
       </div>
   )

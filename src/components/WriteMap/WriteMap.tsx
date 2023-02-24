@@ -10,16 +10,18 @@ export const WriteMap: React.FC = (): React.ReactElement => {
   const {typingSpeed} = useSelector((state: any) => state.areaSlice);
   return (
     <div className={styles.root}>
-        <DisplayArea />
-        <TypingArea />
+            <DisplayArea />
+            <div className={styles.flex}>
+              <TypingArea />
+              <div className={styles.progress}>
+                Скорость:<br/> {typingSpeed} с. / мин.
+                <br />
+                <TagsBlock />
+                <br />
+              </div>
+            </div>
+            
         <ButtonControls/>
-        <TagsBlock />
-        <div>
-            Скорость набора: <br/> {typingSpeed} симв. / мин.
-            <br />
-            <br />
-            Напечатано: <br/>   %
-        </div>
     </div>
   );
 };

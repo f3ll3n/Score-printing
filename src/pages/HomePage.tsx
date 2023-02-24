@@ -1,10 +1,12 @@
 import React from "react";
 import { WriteMap } from "../components/WriteMap/WriteMap";
-
-export function HomePage(){
+import styles from './HomePage.module.scss';
+import MyApp from "../containers/Btn";
+//rewrite styles
+export const HomePage: React.FC = () => {
     return (
-        <div className="wrapper-full bg-slate-200">
-            <div className="wrapper bg-white p-5">
+        <div>
+            <div>
                 <WriteMap />
             </div>
         </div>

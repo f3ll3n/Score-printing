@@ -1,7 +1,7 @@
 import React, { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 import styles from './Tag.module.scss';
 import cn from 'classnames';
-
+//ok
 export interface TagProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     size?: 'sm' | 'lg' | 'md';
     children: ReactNode;

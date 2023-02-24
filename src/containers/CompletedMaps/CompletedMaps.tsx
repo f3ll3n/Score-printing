@@ -1,10 +1,7 @@
-import React, { DetailedHTMLProps, HTMLAttributes } from 'react'
+import React from 'react'
+//Continue
 
-export interface CompletedMapProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    
-}
-
-export const CompletedMaps = ({}: CompletedMapProps): React.ReactElement => {
+export const CompletedMaps: React.FC  = (): React.ReactElement => {
   return (
     <div>CompletedMaps</div>
   )
