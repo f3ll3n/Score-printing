@@ -2,6 +2,7 @@
 	display: inline-block;
 	box-sizing: border-box;
 	padding: 10px;
+  margin: 5px;
 	cursor: pointer;
   color: var(--white);
 	transition: all 0.2s;
@@ -10,7 +11,8 @@
 	border-radius: 5px;
 	font-size: 14px;
     &:disabled{
-        background-color: var(--gray-light);
+        background-color: var(--bg);
+        border: 1px solid rgba(244, 244, 244, 0.119);
         color: var(--white);
         cursor: not-allowed;
         &:hover{

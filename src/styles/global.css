@@ -1,20 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700;800;900&display=swap');
 
+html,
+body {
+  height: auto;
+  min-height: 100%;
+}
+
 body {
   background: var(--bg);
   color: var(--white);
-  height: 100vh;
   font-family: 'Roboto Slab', serif;
   padding: 0;
   margin: 0;
 }
+
 body > * {
-  overflow: hidden;
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;
 }
-
+@media screen and (max-width: 1320px) {
+  body {
+    padding: 0 5%;
+  }
+}
 :root {
   --black: #3b434e;
   --gray-light: #ebebeb;

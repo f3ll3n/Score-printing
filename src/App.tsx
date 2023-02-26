@@ -11,6 +11,7 @@ function App() {
     <Navigation />
       <Routes>
       <Route path="/" element={ <HomePage /> } />
+      <Route path="/test/:id" element={ <WriteMap /> } />
       <Route path="*" element={ <PageNotFound />} />
     </Routes>
     </>

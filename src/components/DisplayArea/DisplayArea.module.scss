@@ -1,6 +1,5 @@
 .root{
     position: relative;
-    overflow: hidden;
     background: rgba(255, 255, 255, 0.23);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -9,12 +8,20 @@
     border: 1px solid rgba(255, 255, 255, 0.25);
     padding: 5px 10px;
     margin: 15px 0;
+    span{
+        font-weight: 300;
+    }
+}
+.mapValue{
+    display: block;
+    width: 100%;
 }
 .user_input{
     position: absolute;
     display: block;
-    top: 5px;
-    left: 10px;
+    margin: 5px 10px;
+    top: 0px;
+    left: 0px;
 }
 .green{
     color: var(--white);
