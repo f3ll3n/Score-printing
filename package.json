@@ -1,5 +1,6 @@
 {
   "name": "score-printing",
+  "homepage": "https://f3ll3n.github.io/Score-printing",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,6 +18,7 @@
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "classnames": "^2.3.2",
+    "gh-pages": "^5.0.0",
     "lodash": "^4.17.21",
     "lodash.isequal": "^4.5.0",
     "react": "^18.2.0",
@@ -29,6 +31,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

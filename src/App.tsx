@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/global.css';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navigation, WriteMap } from './components';
 import { HomePage } from './pages/HomePage';
 import { PageNotFound } from './pages/PageNotFound';
